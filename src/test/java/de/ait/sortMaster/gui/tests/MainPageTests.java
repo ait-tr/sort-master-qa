@@ -12,12 +12,12 @@ public class MainPageTests extends TestBase {
 
     @BeforeMethod
     public void setUpPage() {
-        mainPage = new MainPage(app.getDriver());
+        mainPage = new MainPage(app.driver);
     }
 
     @Test
     public void shouldDisplayHeaderAndInput() {
-        Assert.assertEquals(mainPage.getHeaderText(), "Find the Right Container");
+        softAssert.assertEquals(mainPage.getHeaderText(), "Find the Right Container");
         Assert.assertTrue(mainPage.isInputVisible(), "Search input should be visible");
     }
 

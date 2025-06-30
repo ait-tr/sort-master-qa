@@ -1,15 +1,12 @@
 package de.ait.sortMaster.gui.core;
 
 import de.ait.sortMaster.utils.MyListener;
-import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
@@ -17,7 +14,6 @@ import java.time.Duration;
 public class ApplicationManager {
 
     public static SoftAssert softly = new SoftAssert();
-    @Getter
     public WebDriver driver;
 
     String browser;

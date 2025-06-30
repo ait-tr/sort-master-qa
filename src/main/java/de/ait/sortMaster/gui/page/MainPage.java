@@ -1,47 +1,50 @@
 package de.ait.sortMaster.gui.page;
 
 import de.ait.sortMaster.gui.core.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MainPage extends BasePage {
-
-    private final By header = By.tagName("h2");
-    private final By inputField = By.tagName("input");
-    private final By resultItems = By.cssSelector("ul > li");
-    private final By errorText = By.cssSelector(".text-red-500");
-    private final By noMatchMessage = By.cssSelector(".text-gray-500");
+    @FindBy(tagName = "h2")
+    WebElement header;
+    @FindBy(tagName = "input")
+    WebElement input;
+    @FindBy(css = "ul > li")
+    List<WebElement> resultItems;
+    @FindBy(css = "ul > li")
+    WebElement errorText;
+    @FindBy(css = ".text-gray-500")
+    WebElement noMatchMessage;
 
     public MainPage(WebDriver driver) {
         super(driver);
     }
 
     public String getHeaderText() {
-        return driver.findElement(header).getText();
+        return header.getText();
     }
 
     public boolean isInputVisible() {
-        return isElementDisplayed(driver.findElement(inputField));
+        return isElementDisplayed(input);
     }
 
     public void searchFor(String query) {
-        type(driver.findElement(inputField), query);
+        type(input, query);
         pause(500); // simulate debounce (React waits 300ms)
     }
 
     public int getNumberOfResults() {
-        List<WebElement> items = driver.findElements(resultItems);
-        return items.size();
+        return resultItems.size();
     }
 
     public boolean isNoMatchMessageVisible() {
-        return isElementDisplayed(driver.findElement(noMatchMessage));
+        return isElementDisplayed(noMatchMessage);
     }
 
     public boolean isErrorVisible() {
-        return isElementDisplayed(driver.findElement(errorText));
+        return isElementDisplayed(errorText);
     }
 }
