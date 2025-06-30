@@ -1,6 +1,7 @@
 package de.ait.sortMaster.gui.core;
 
 import de.ait.sortMaster.utils.MyListener;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -16,6 +17,7 @@ import java.time.Duration;
 public class ApplicationManager {
 
     public static SoftAssert softly = new SoftAssert();
+    @Getter
     public WebDriver driver;
 
     String browser;
@@ -34,7 +36,7 @@ public class ApplicationManager {
         WebDriverListener listener = new MyListener();
         driver = new EventFiringDecorator<>(listener).decorate(driver);
 
-        driver.get("");
+        driver.get("http://localhost:5173/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -44,4 +46,5 @@ public class ApplicationManager {
     public void stopTest() {
         driver.quit();
     }
+
 }
