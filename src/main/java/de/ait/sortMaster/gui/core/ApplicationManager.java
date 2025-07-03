@@ -34,7 +34,7 @@ public class ApplicationManager {
         WebDriverListener listener = new MyListener();
         driver = new EventFiringDecorator<>(listener).decorate(driver);
 
-        driver.get("");
+        driver.get("http://localhost:5173");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
